@@ -1,0 +1,68 @@
+<html>
+
+<head></head>
+<title>谢週五の画板</title>
+<link rel="stylesheet" href="css/index.css">
+
+
+
+<body style="background-color: #E5E4E5;;overflow-x: hidden;">
+
+    <div style="margin-top:10px;">
+        <div style="width:50px;float:left;">
+            <ul id="toolsul" class="tools">
+                <li id="toolsPencil" data-type="pen" class="active">
+                    <i class="icon-tools icon-pen-select" data-default='icon-tools icon-pen-black'></i>
+                </li>
+                <li data-type="arrow">
+                    <i class="icon-tools icon-arrow-black" data-default='icon-tools icon-arrow-black'></i>
+                </li>
+                <li data-type="line">
+                    <i class="icon-tools icon-line-black" data-default='icon-tools icon-line-black'></i>
+                </li>
+                <li data-type="dottedline">
+                    <i class="icon-tools icon-dottedline-black" data-default='icon-tools icon-dottedline-black'></i>
+                </li>
+                <li data-type="circle">
+                    <i class="icon-tools icon-circle-black" data-default='icon-tools icon-circle-black'></i>
+                </li>
+                <li data-type="ellipse">
+                    <i class="icon-tools icon-ellipse-black" data-default='icon-tools icon-ellipse-black'></i>
+                </li>
+                <li class="hide" data-type="square">
+                    <i class="icon-tools icon-square-black" data-default='icon-tools icon-square-black'></i>
+                </li>
+                <li data-type="rectangle">
+                    <i class="icon-tools icon-rectangle-black" data-default='icon-tools icon-rectangle-black'></i>
+                </li>
+                <li data-type="rightangle">
+                    <i class="icon-tools icon-rightangle-black" data-default='icon-tools icon-rightangle-black'></i>
+                </li>
+                <li data-type="equilateral">
+                    <i class="icon-tools icon-equilateral-black" data-default='icon-tools icon-equilateral-black'></i>
+                </li>
+                <li class="hide" data-type="isosceles">
+                    <i class="icon-tools icon-isosceles-black" data-default='icon-tools icon-isosceles-black'></i>
+                </li>
+                <li data-type="text">
+                    <i class="icon-tools icon-text-black" data-default='icon-tools icon-text-black'></i>
+                </li>
+                <li data-type="remove">
+                    <i class="icon-tools icon-remove-black" data-default='icon-tools icon-remove-black'></i>
+                </li>
+            </ul>
+
+        </div>
+        <div id="canvasDiv" class="canvasDiv" style="width:95%;">
+            <canvas id="c" width="1920" height="1080">请使用支持HTML5的浏览器</canvas>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/fabric.js/2.1.0/fabric.min.js"></script>
+    <script src="js/demo.js"></script>
+    <script src="js/canvasZoom.js"></script>
+
+</body>
+
+</html>

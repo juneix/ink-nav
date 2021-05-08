@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="referrer" content="never">
+<title>单向历</title>
+	<style>
+div{
+    height: 1440px;
+    width: 1080px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+img{
+    max-width: 100%;
+    max-height: 100%;
+}
+	</style>
+</head>
+
+<body>
+
+<div class="img">
+ <img id="img" src="/ink/img/0233.jpg" height="95%" width="95%">
+</div>
+
+ <script type="text/javascript">
+// 如果给个位数加0，注意转换为字符串再拼接，否则会识别为算术运算
+	var date = new Date();
+	var month = date.getMonth() + 1; 
+	month = (month < 10 ? "0" + month : month);  
+	var date1 = date.getDate();
+	date1 = (date1 < 10 ? "0" + date1 : date1); 
+	var myDate = month + date1;
+// 获取当前日期，如0927
+    var imgSrc = 'http://img.owspace.com/Public/uploads/Download/2021/' + myDate +'.jpg';
+    document.getElementById('img').src = imgSrc;
+ </script>
+
+</body>
+</html>

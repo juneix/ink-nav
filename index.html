@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--
+*** 项目名称：泡面盖导航 v1.2
+*** 更新时间：2021-04-17
+*** 网站作者：@谢週五 (个人网站 https://juneix.gq)
+*** 二次修改请保留原作者版权
+-->
+<head>
+    <meta charset="UTF-8">
+    <title>盖Kindle，面更香。</title>
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Yusei+Magic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<style>
+        body {
+          color: #000000;
+          background-color: #ffffff;
+          font-family: Arial,sans-serif;
+        }
+
+        .app {
+          position: fixed;
+          width: 100%;
+          height: 100%;
+        }
+
+        .time {
+            width: 100%;
+        	margin: auto;
+          text-align: center;
+          padding-top: 120px;
+          font-size: 32rem;
+          font-family: 'Carter One';
+        }
+
+        .date {
+        	width: 100%;
+        	text-align: center;
+          padding-top: 40px;
+          font-size: 8rem;
+          font-family: 'Yusei Magic';
+        }
+    </style>
+
+<!--百度统计代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?76518cb5ebefaa76a11f532dd5305d3e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+
+<!--和风天气-->
+<div id="he-plugin-simple"></div>
+<script>
+WIDGET = {
+  "CONFIG": {
+    "modules": "01234",
+    "background": "2",
+    "tmpColor": "000000",
+    "tmpSize": "48",
+    "cityColor": "000000",
+    "citySize": "48",
+    "aqiColor": "666666",
+    "aqiSize": "48",
+    "weatherIconSize": "72",
+    "alertIconSize": "54",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "1",
+    "language": "auto",
+    "borderRadius": "5",
+    "fixed": "false",
+    "vertical": "left",
+    "horizontal": "center",
+    "key": "8461274cfa3e403cb7609275a43bbdb6"
+  }
+}
+</script>
+<script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
+
+<!--底部导航栏-->
+<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+  <div class="container-fluid"> 
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#"><font size="5">泡面盖导航 Beta</font></a>
+    </div>
+    <div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#"><font size="4">主页</font></a></li>
+            <li><a href="./clock"><font size="4">全屏时钟</font></a></li>
+            <li><a href="./cal"><font size="4">单向历</font></a></li>           
+            <li><a href="./draw"><font size="4">小画板</font></a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <font size="4">阅读</font> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="https://reabble.cn/"><font size="4">Reabble</font></a></li>
+                    <li class="divider"></li>
+                    <li><a href="https://r.qq.com/"><font size="4">微信读书</font></a></li>
+                    <li class="divider"></li>
+                    <li><a href="https://m.ac.qq.com/category/index"><font size="4">腾讯动漫</font></a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <font size="4">工具</font> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="https://api.razzlepuzzles.com/sudoku?locale=zh"><font size="4">数独</font></a></li>
+                    <li class="divider"></li>
+                    <li><a href="http://yun.rili.cn/wnl/m/index.html"><font size="4">老黄历</font></a></li>
+                </ul>
+            </li>
+            <li><a href="./about.html"><font size="4">关于</font></a></li>
+        </ul>
+    </div>
+  </div>
+</nav>
+
+<!--时间和日期-->
+<body>
+	<div class="app">
+      <div class="time" id="time">16:07</div>
+      <div class="date">
+          <span id="date">4月19日</span> <span id="week">星期日</span>         
+      </div>
+    </div>
+
+    <script>
+      function update() {
+        var date = new Date();
+        var utc8DiffMinutes = date.getTimezoneOffset() + 480;
+        date.setMinutes(date.getMinutes() + utc8DiffMinutes);
+
+        var timeString = date.getHours() + ':' + ('0' + date.getMinutes()).slice(-2);
+        var dateString = (date.getMonth() + 1) + '月' + date.getDate() + '日';
+        var weekList = ['日', '一', '二', '三', '四', '五', '六'];
+        // var weekJpList = [' 日曜日', ' 月曜日', ' 火曜日', ' 水曜日', ' 木曜日', ' 金曜日', ' 土曜日'];
+        var weekString = '星期' + weekList[date.getDay()];
+
+        document.getElementById("time").innerHTML = timeString
+        document.getElementById("date").innerHTML = dateString
+        document.getElementById("week").innerHTML = weekString
+      }
+
+      update()
+      setInterval("update()", 60 * 1000)
+    </script>
+</body>
+</html>
