@@ -5,7 +5,7 @@
     drawType = null,
     canvasObjectIndex = 0,
     textbox = null;
-  var drawWidth = 2; //笔触宽度
+  var drawWidth = 20; //笔触宽度
   var color = "#E34F51"; //画笔颜色
   var drawingObject = null; //当前绘制对象
   var moveCount = 1; //绘制移动计数器

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--
+*** 项目名称：泡面盖导航 v2.0
+*** 更新时间：2022-12-12
+*** 网站作者：@谢週五 (个人网站 https://juneix.gq)
+*** 二次修改请保留原作者版权
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="eink-dark.css">
+    <title>泡面盖导航 Beta</title>
+<style>
+.button {
+    background-color: #303030; /* 深灰 */
+    border: none;
+    color: white;
+   	padding: 25px 25px;
+	width: 200px;
+    text-align: center;
+    text-decoration: none;
+	vertical-align: middle;
+    display: inline-block;
+	border-radius: 8px;/* 按钮圆角 */
+    font-size: 28px;
+    color: black;
+    margin: 10px;
+    cursor: pointer;
+}
+div{
+    text-align: center;
+}
+a{
+    text-decoration: none;
+}
+.button2 {background-color: #474747;} /* 中灰 */
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>📖 泡面盖导航 Beta</h1>
+<center><p>
+<script language="javaScript">
+now = new Date(),hour = now.getHours()
+if(hour < 6){document.write("🌙 凌晨了，愿好书伴你共眠。")}
+else if (hour < 9){document.write("🌱 早上好，欢迎回来！")}
+else if (hour < 12){document.write("🍀上午好，欢迎回来！")}
+else if (hour < 14){document.write("☀️ 中午好，欢迎回来！")}
+else if (hour < 17){document.write("🍵 下午好，欢迎回来！")}
+else if (hour < 19){document.write(" 🥟 傍晚好，欢迎回来！")}
+else if (hour < 22){document.write("🥛 晚上好，欢迎回来！")}
+else {document.write("🌙 夜深了，愿好书伴你共眠。")}
+</script></p></center>
+</header>
+
+<div>
+<a href="./1pone" class="button">📰 信息主页</a>
+<a href="./cal" class="button">📅 单向历</a>
+<a href="./clock" class="button">⏰ 全屏时钟</a>
+<a href="./tomato" class="button">🍅 番茄钟</a>
+<a href="./draw" class="button">🖼 小画板</a>
+<a href="./weather" class="button">⛅️ 天气仪表盘</a>
+<a href="./noodle" class="button">🍜 泡面计时</a>
+</div>
+
+<main>
+<details>
+  <summary>资讯阅读</summary>
+  <p>
+     <ul>
+         <li><a href="https://reabble.cn/app#">📚 Reabble</a></li>
+         <li><a href="https://readhub.cn/">🗞 Readhub</a></li>
+         <li><a href="https://kanzhihu.pro/">📜 知乎日报</a></li>
+    </ul>
+  </p>
+</details>
+<details>
+  <summary>休闲娱乐</summary>
+  <p>
+     <ul>
+         <li><a href="https://e-ink.club/index.php">👾 小游戏合集</a></li>
+         <li><a href="https://wordlegame.org/">🔠 Wordle 原版</a></li>
+         <li><a href="https://cheeaun.github.io/chengyu-wordle/">🔠 Wordle 成语版</a></li>
+         <li><a href="https://api.razzlepuzzles.com/sudoku?locale=zh">🔢 数独1</a></li>
+         <li><a href="https://123sudoku.org/">🔢 数独2</a></li>
+         <li><a href="http://howbigismybrowser.com/">🖥 屏幕分辨率</a></li>
+    </ul>
+  </p>
+</details>
+<details>
+  <summary>更多</summary>
+  <p>
+     <ul>
+        <li><a href="./follow.html">📮 关注作者 </a></li>
+        <li><a href="./index.html">☀️ 日间模式 </a></li>
+    </ul>
+  </p>
+</details>
+</main>
+
+<footer>
+      <center>Made with ❤️ <a href="https://5nav.ml" target="_blank">谢週五の导航站</a></center>
+</footer>
+</body>
+</html>

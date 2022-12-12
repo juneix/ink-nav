@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>泡面盖导航丨信息主页</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qweather-icons@1.1.1/font/qweather-icons.css">
+    <!-- 查询客户端ip用于天气查询 -->
+    <script src="https://pv.sohu.com/cityjson"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script src="js/cookie.js"></script>
+    <script src="js/main.js"></script>
+</head>
+
+<body scroll="no">
+    <div class="page">
+        <div id="log_container">
+        </div>
+        <span class="iconfont" id="light_dark_icon">&#xe8e3</span>
+        <div id="top">
+            <div class="nonetop_container">
+            </div>
+            <div class="hitokoto_container">
+                <div class="hitokoto_main">
+                    <div id="brackets-l"></div>
+                    <div id="hitokoto"></div>
+                    <div id="brackets-r"></div>
+                </div>
+                <div id="from"></div>
+            </div>
+            <div class="poem_container">
+                <div id="poem_sentence"></div>
+                <div id="poem_info"></div>
+            </div>
+            <div class="weibo_container">
+                <div class="weibo_title">🔥微博热搜加载中...</div>
+                <div class="hot_list">
+                    <ul id="hot_word"></ul>
+                    <ul id="hot_word_num"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="middle">
+            <div id="time_container">
+                <div id="apmOuterWrapper">
+                    <div id="apmInnerWrapper">
+                        <div id="apm"></div>
+                    </div>
+                </div>
+                <div class="time" id="time"></div>
+                <div class="date" id="date">Link Start...</div>
+                <div><span class="lunar" id="lunar"></span><span class="holiday" id="holiday"></span></div>
+            </div>
+        </div>
+
+        <div id="bottom">
+            <div class="nonebtm_container"></div>
+            <div class="weather_container">
+                <div id="weaTitle">⛅️天气加载中...</div>
+                <div class="weaWrapper">
+                    <div id="weaImg"></div>
+                    <div id="weaTemp"></div>
+                    <div id="weaInfo"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
