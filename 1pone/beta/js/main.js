@@ -1,19 +1,12 @@
 // Attention: Kindle浏览器不支持模版字符串、箭头函数等es6语法
-// TODO 配置参数、API抽离
 // TODO 历史上的今天模块
 
 window.onload = function () {
   getIpInfo();
-  // getCity();
-  //读取cookie数据重新赋值
   // 时钟模块
-  if (timezoneOffset !== "") {
-    timezoneOffset = Number(timezoneOffset);
-    clock(bg_autoMode);
-    time_timer = setInterval("clock(" + bg_autoMode + ")", 60 * 1000);
-  } else {
-    getTimezoneOffset();
-  }
+  clock(bg_autoMode);
+  time_timer = setInterval("clock(" + bg_autoMode + ")", 60 * 1000);
+
   // rotation_mode 屏幕旋转标识
   if (rotation_mode !== "") {
     rotation_mode = Number(rotation_mode);
@@ -69,15 +62,10 @@ window.onload = function () {
 // Keys
 var KEY_UNSPLASH = "bXwWoUhPeVw-yvSesGMgaOENnlSzhHYB43kZIQOR8cQ";
 var KEY_QWEATHER = getCookie("qweatherKey"); // "f3c3540923c24847b9f4d194888dbcef"; // https://console.qweather.com/#/apps
-var KEY_IP = "6b9c2d4aa0548032406f0f4ee02e84d9"; // https://console.amap.com/dev/key/app
-var KEY_LUNAR = "c8be368a035acdf1";
 
 // APIs
 var API_HITOKOTO = "https://v1.hitokoto.cn?encode=json&charset=utf-8";
-var API_IP_INFO = "https://ipapi.co/";
-// var API_CITY = "https://restapi.amap.com/v3/ip?";
-var API_TIMEZONE = "https://worldtimeapi.org/api/ip/";
-var API_LUNAR = "https://api.muxiaoguo.cn/api/yinlongli?";
+var API_IP_INFO = "https://ipapi.co/json?languages=zh-CN";
 var API_WEATHER = "https://devapi.qweather.com/v7/weather/now?";
 var API_WEIBO = "https://tenapi.cn/resou/";
 
@@ -97,7 +85,8 @@ var rotation_mode_default = 0; // 默认使用0-竖屏模式 0=0°，1=90°，2=
 var hour24_default = false; // 默认使用十二小时制
 var bg_autoMode = false; // 黑白背景自动切换
 var weibo_num = 3; // 微博热搜条数
-var cIp = returnCitySN.cip; // 客户端ip
+var timezoneOffset = 0; // 时区偏移分钟
+var cIp = ""; // 客户端ip
 var city = ""; // 客户端所在城市
 var cityLocation = null; // 客户端经纬度信息
 
@@ -107,7 +96,6 @@ var bottom_mode = getCookie("bottom_mode"); // 底部组件序号，默认使用
 var bg_mode = getCookie("bg_mode"); // 背景组件序号，默认使用白底
 var rotation_mode = getCookie("rotation_mode"); // 竖屏标识
 var hour24 = getCookie("hour24"); // 24小时制
-var timezoneOffset = getCookie("timezoneOffset"); // 时区偏移分钟
 
 // 模块缓存数据
 var hitokoto_data = null; // 一言缓存数据
@@ -181,44 +169,14 @@ function poem() {
 // 根据IP获取所在城市信息
 function getIpInfo() {
   var xhr = createXHR();
-  xhr.open("GET", API_IP_INFO + cIp + "/json/?languages=zh-CN", false);
+  xhr.open("GET", API_IP_INFO, false);
   xhr.onreadystatechange = function () {
     if (this.readyState == 4) {
       var data = JSON.parse(this.responseText);
       cityLocation = data.longitude + "," + data.latitude;
-    }
-  };
-  xhr.send(null);
-}
-
-// 备用, 目前功能被 getIpInfo 实现
-// function getCity() {
-//   var xhr = createXHR();
-//   xhr.open("GET", API_CITY + "key=" + KEY_IP + "&ip=" + cIp, false);
-//   xhr.onreadystatechange = function () {
-//     if (this.readyState == 4) {
-//       var data = JSON.parse(this.responseText);
-//       city = data.city;
-//       cityLocation = data.rectangle.split(";");
-//       cityLocation = [cityLocation[0].split(","), cityLocation[1].split(",")];
-//       cityLocation =
-//         (Number(cityLocation[0][0]) + Number(cityLocation[1][0])) / 2 +
-//         "," +
-//         (Number(cityLocation[0][1]) + Number(cityLocation[1][1])) / 2;
-//     }
-//   };
-//   xhr.send(null);
-// }
-
-// 获取所在时区
-function getTimezoneOffset() {
-  var xhr = createXHR();
-  xhr.open("GET", API_TIMEZONE + (cIp || null), true);
-  xhr.onreadystatechange = function () {
-    if (this.readyState == 4) {
-      timezoneOffset = JSON.parse(this.responseText).raw_offset / 60;
-      setCookie("timezoneOffset", timezoneOffset, 30);
-      clock();
+      cIp = data.ip;
+      city = data.region;
+      timezoneOffset = parseInt(data.utc_offset || "+0800") * 0.6;
     }
   };
   xhr.send(null);
@@ -276,7 +234,6 @@ function clock(autoMode) {
   document.getElementById("time").innerHTML = timeString;
 
   if (!dd_data || dd !== dd_data) {
-    console.log("get lunar");
     dd_data = dd;
     var dateString = MM + "月" + dd + "日";
     var weekList = ["日", "一", "二", "三", "四", "五", "六"];
@@ -288,24 +245,11 @@ function clock(autoMode) {
 }
 
 function getLunar() {
-  var xhr = createXHR();
-  xhr.open("GET", API_LUNAR + "api_key=" + KEY_LUNAR, true);
-  xhr.onreadystatechange = function () {
-    if (this.readyState == 4) {
-      var data = JSON.parse(this.responseText);
-      if (data.code == 200) {
-        var lunar_data = data.data;
-        document.getElementById("lunar").innerHTML =
-          lunar_data.lunarYearName + lunar_data.lunar;
-        if (lunar_data.festival.length)
-          document.getElementById("holiday").innerHTML =
-            "&nbsp;&nbsp;" + lunar_data.festival[0];
-      } else {
-        console.error("农历数据获取失败");
-      }
-    }
-  };
-  xhr.send(null);
+  var lunar = calendar.solar2lunar();
+  document.getElementById("lunar").innerHTML =
+    lunar.gzYear + "年" + lunar.IMonthCn + lunar.IDayCn;
+  document.getElementById("holiday").innerHTML =
+    "&nbsp;&nbsp;" + (lunar.lunarFestival || "") + (lunar.festival || "");
 }
 
 function weather() {
